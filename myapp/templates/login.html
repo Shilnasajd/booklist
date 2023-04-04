@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- {%load static%} -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                
+            </div>
+            <div class="col-4">{%if messages%}
+                {%for msg in messages%}
+                {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %} 
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Note</strong> {{msg}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endif %}
+                {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %} 
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>registration Completed</strong> {{msg}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endif %}
+                {%endfor%}
+            {%endif%}
+        </div>
+    
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 text-center">
+                <!-- <img src="{%static 'images/siva.jpg'%}" alt=""> -->
+                <form action="" method="post" >
+                    {%csrf_token%}
+                    {{form.as_p}}
+                    <button type="submit" class="btn btn-info">login</button>
+                </form>
+
+                <div >
+                    <a href="{% url 'register' %}"><button class="btn btn-warning">Register</button></a> </div>
+            </div>
+            <div class="col-4">
+                
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
